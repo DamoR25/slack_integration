@@ -9,17 +9,17 @@
       register: mypass
     - name: Print the script result
       debug:
-        msg: "{{ mypass.stdout }}"
+        msg: "{{ mypass }}"
         
     - name: To ping to Slack to send message
       slack:
          token: T4W1S5P34/B02MEUC40E9/iBeMJQKNdwG67tu90pxlPXGZ
          domain: hooks.slack.com
          channel: '#ansible_eca_test'
-         msg: "{{mypass.stdout}}"    
-      when: mypass.stdout | regex_search('breached')
+         msg: "{{mypass}}"    
+      when: mypass | regex_search('breached')
       
     - name: fail the play if file system is within threshold
       fail:
         msg: "the command failed"
-      when: mypass.stdout | regex_search('threshold')
+      when: mypass | regex_search('threshold')

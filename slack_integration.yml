@@ -20,6 +20,6 @@
       when: mypass.stdout | regex_search('breached')
       
     - name: fail the play if file system is within threshold
-      #fail:
-        #:msg: "the command failed"
-      failed_when: mypass.stdout | regex_search('under threshold')
+      fail:
+        msg: "the command failed"
+      when: mypass.stdout | regex_search('under threshold')

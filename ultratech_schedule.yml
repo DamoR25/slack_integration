@@ -1,1 +1,16 @@
 ---
+  - name: test script module
+
+    hosts: all
+
+    tasks:
+
+      - name: run simple script
+
+        script: C:\Users\002E5J744\Desktop\Tool\Py Codes\File1.bat
+        
+        register: mypass
+        
+      - name: Print the script result
+        debug:
+          msg: "{{ mypass.stdout }}"
